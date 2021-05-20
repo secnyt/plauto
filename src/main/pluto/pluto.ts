@@ -19,6 +19,9 @@
 import * as auth from './auth.json'
 import * as Discord from 'discord.js'
 import registerCommands from './registers/RegisterCommands'
+import SlashCommandHandler from "./handlers/SlashCommandHandler";
+import {WSEventType} from "discord.js";
+import CommandRegistry from "./registries/CommandRegistry";
 
 const c = new Discord.Client()
 
@@ -40,7 +43,7 @@ const setup = () => {
 }
 
 const register = () => {
-    registerCommands()
+    registerCommands(() => {})
 }
 
 export default c

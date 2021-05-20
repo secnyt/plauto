@@ -41,4 +41,8 @@ export default class Command {
         this.genre = options.genre
         this.arguments = args
     }
+
+    getArguments() {
+        return this.arguments
+    }
 }

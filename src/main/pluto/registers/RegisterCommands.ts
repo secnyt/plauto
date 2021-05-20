@@ -19,12 +19,13 @@ import { readdir } from 'fs'
 import CommandRegistry from "../registries/CommandRegistry";
 import * as find from 'findit'
 
-export default async function registerCommands () {
+export default async function registerCommands (callback: Function) {
     const finder = find(__dirname + '/../commands')
 
     finder.on('file', (file, stat) => {
         if (file.endsWith('command.js')) {
-            CommandRegistry.register(new (require(file).default))
+            const registered = CommandRegistry.register(new (require(file).default))
+            callback(registered)
         }
     })
 }
